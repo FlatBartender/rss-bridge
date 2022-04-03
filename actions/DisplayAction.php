@@ -74,7 +74,8 @@ class DisplayAction extends ActionAbstract {
 					'format',
 					'_noproxy',
 					'_cache_timeout',
-					'_error_time'
+					'_error_time',
+					'_rename'
 				), '')
 		);
 
@@ -87,7 +88,8 @@ class DisplayAction extends ActionAbstract {
 					'format',
 					'_noproxy',
 					'_cache_timeout',
-					'_error_time'
+					'_error_time',
+					'_rename'
 				), '')
 		);
 
@@ -148,8 +150,13 @@ class DisplayAction extends ActionAbstract {
 					$items = $feedItems;
 				}
 
+				$name = $bridge->getName();
+				if (array_key_exists('_rename', $this->userData)) {
+					$name = $this->userData['_rename'];
+				}
+
 				$infos = array(
-					'name' => $bridge->getName(),
+					'name' => $name,
 					'uri'  => $bridge->getURI(),
 					'donationUri'  => $bridge->getDonationURI(),
 					'icon' => $bridge->getIcon()
